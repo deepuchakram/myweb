@@ -3,15 +3,15 @@ pipeline{
 	
 	environment {
 		PATH = "${PATH}:${getMavenPath()}"
-		DOCKER_TAG = "${getLatestCommitId()}"
-		NEXUS_HOST = "172.31.45.145:8083"
-		DEV_IP = "172.31.6.150"
+		//DOCKER_TAG = "${getLatestCommitId()}"
+		NEXUS_HOST = "13.126.21.144:8081"
+		//DEV_IP = "13.126.21.144"
 	}
 	stages{
 	/*
 		stage('SCM - Checkout'){
 			steps{
-				git url: 'https://github.com/javahometech/myweb'
+				git url: 'https://github.com/deepuchakram/myweb'
 			
 			}
 		}
@@ -21,7 +21,7 @@ pipeline{
 			parallel{
 				stage('Sonar Report'){
 					steps{
-						withSonarQubeEnv('sonar-7.5') {
+						withSonarQubeEnv('sonar-7.9') {
 							sh "mvn sonar:sonar"
 							
 					    }
@@ -51,7 +51,7 @@ pipeline{
 		
 		}	
 	
-		stage('Docker - Build'){
+	/*	stage('Docker - Build'){
 			steps{
 			   withCredentials([string(credentialsId: 'nexus-docker', variable: 'nexusPwd')]) {
 					sh "docker login -u admin -p ${nexusPwd} ${NEXUS_HOST}"
@@ -93,7 +93,7 @@ DevOps Team""", subject: "${env.JOB_NAME} Ran", to: 'hari.kammana@gmail.com'
 		}
 	}
 }
-
+*/
 def getMavenPath(){
 	def mvnHome = tool name: 'maven-3', type: 'maven'
 	return "${mvnHome}/bin"
